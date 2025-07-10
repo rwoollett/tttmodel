@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(
-  CSTokenModelProject VERSION 1.0
-  DESCRIPTION "CSToken model structures."
+  TicTacToeModelProject VERSION 1.0
+  DESCRIPTION "Tictactoe service model structures."
   LANGUAGES CXX C
 )
 
@@ -9,5 +9,5 @@ project(
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(cstokenmodel)
+add_subdirectory(tttmodel)
 

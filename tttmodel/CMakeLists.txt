@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
-# CSToken services model structures (to enable using model structures in other applications)
-add_library(CSTokenModel
+# TicTacToe services model structures (to enable using model structures in other applications)
+add_library(TTTModel
   ClientCS.cpp
   ClientCS.h
   Events.h
@@ -17,7 +17,7 @@ add_library(CSTokenModel
 
 
 target_include_directories(
-  CSTokenModel PUBLIC 
+  TTTModel PUBLIC 
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..
   $<INSTALL_INTERFACE:include>
 )
