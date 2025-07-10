@@ -1,4 +1,3 @@
-#include "ClientCS.h"
 #include "pq.h"
 #include <unordered_map>
 #include "timestamp.h"
@@ -35,9 +34,9 @@ namespace Model::PG
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
   };
 
-  Model::ClientCS ClientCS::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  Model::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
-    Model::ClientCS clientCS{};
+    Model::Game game{};
     auto fieldColumns = mapFieldCols(res, nCols);
     auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
     {
@@ -47,22 +46,14 @@ namespace Model::PG
     try
     {
       // D(std::cerr << "connected bool from pq: " << getString("connected") << std::endl;)
-      clientCS.name = getString("name");
-      clientCS.host = getString("host");
-      clientCS.ip = getString("ip");
-      clientCS.connected = (getString("connected") == "t");
-      clientCS.processId = getString("processId");
-      clientCS.connectedAt = getString("connectedAt");
-      clientCS.disconnectedAt = getString("disconnectedAt");
-      auto tpOptCA = parseDate(getString("connectedAt"));
-      auto tpOptDA = parseDate(getString("disconnectedAt"));
+      game.userId = getString("userId");
+      game.board = getString("board");
+      game.userId = getString("userId");
+      game.createdAt = getString("createdAt");
+      auto tpOptCA = parseDate(getString("createdAt"));
       if (tpOptCA)
-        clientCS.tpConnectedAt = *tpOptCA;
-      if (tpOptDA)
-        clientCS.tpDisconnectedAt = *tpOptDA;
+        game.tpCreatedAt = *tpOptCA;
 
-      clientCS.parentId = std::atoi(getString("parentId").c_str());
-      clientCS.clientIp = getString("clientIp");
     }
     catch (const std::string &e)
     {
@@ -73,13 +64,13 @@ namespace Model::PG
       throw "error in fromPQRes";
     }
 
-    return clientCS;
+    return game;
   }
 
-  Model::ClientConnectCS ClientConnectCS::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  Model::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
 
-    Model::ClientConnectCS clientConnectCS{};
+    Model::PlayerMove playerMove{};
     auto fieldColumns = mapFieldCols(res, nCols);
     auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
     {
@@ -88,13 +79,13 @@ namespace Model::PG
 
     try
     {
-      clientConnectCS.sourceIp = getString("sourceIp");
-      clientConnectCS.connected = (getString("connected") == "t");
-      clientConnectCS.processId = getString("processId");
-      clientConnectCS.connectedAt = getString("connectedAt");
-      auto tpOptCA = parseDate(getString("connectedAt"));
-      if (tpOptCA)
-        clientConnectCS.tpConnectedAt = *tpOptCA;
+      //playerMove.id = getString("id");
+      playerMove.gameId = getString("gameId");
+      playerMove.isOpponentStart = (getString("isOpponentStart") == "t");
+      playerMove.allocated = (getString("allocated") == "t");
+      playerMove.player = std::atoi(getString("player").c_str());
+      playerMove.moveCell = std::atoi(getString("moveCell").c_str());
+
     }
     catch (const std::string &e)
     {
@@ -105,38 +96,7 @@ namespace Model::PG
       throw "error in fromConnectPQRes";
     }
 
-    return clientConnectCS;
-  }
-  
-  Model::ClientDisconnectCS ClientDisconnectCS::fromPGRes(PGresult *res, int nCols, int rowIndex)
-  {
-
-    Model::ClientDisconnectCS clientDisconnectCS{};
-    auto fieldColumns = mapFieldCols(res, nCols);
-    auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
-    {
-      return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
-    };
-
-    try
-    {
-      clientDisconnectCS.sourceIp = getString("sourceIp");
-      clientDisconnectCS.connected = (getString("connected") == "t");
-      clientDisconnectCS.disconnectedAt = getString("disconnectedAt");
-      auto tpOptCA = parseDate(getString("disconnectedAt"));
-      if (tpOptCA)
-        clientDisconnectCS.tpDisconnectedAt = *tpOptCA;
-    }
-    catch (const std::string &e)
-    {
-      throw e;
-    }
-    catch (...)
-    {
-      throw "error in fromConnectPQRes";
-    }
-
-    return clientDisconnectCS;
+    return playerMove;
   }
 
 } // namespace Model::PG

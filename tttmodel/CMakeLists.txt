@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 
 # TicTacToe services model structures (to enable using model structures in other applications)
 add_library(TTTModel
-  ClientCS.cpp
-  ClientCS.h
+  TicTacToe.cpp
+  TicTacToe.h
   Events.h
   events/Actions.h
   events/json.h

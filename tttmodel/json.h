@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ClientCS.h"
+#include "TicTacToe.h"
 #include "timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>

@@ -1,6 +1,6 @@
 
-#ifndef EVENT_SUBJECTS_H
-#define EVENT_SUBJECTS_H
+#ifndef EVENT_TTT_SUBJECTS_H
+#define EVENT_TTT_SUBJECTS_H
 
 #include <string>
 #include <map>
@@ -28,4 +28,4 @@ namespace Events
       {"player_Move", Subject::PlayerMove}};
 
 }
-#endif // EVENT_SUBJECTS_H
+#endif // EVENT_TTT_SUBJECTS_H

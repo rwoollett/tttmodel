@@ -1,7 +1,7 @@
-#ifndef CSTOKENMODEL_CLIENTCS_H
-#define CSTOKENMODEL_CLIENTCS_H
+#ifndef TTTMODEL_GAME_H
+#define TTTMODEL_GAME_H
 
-#include "ClientCS.h"
+#include "TicTacToe.h"
 #include "json.h"
 #include "Events.h"
 

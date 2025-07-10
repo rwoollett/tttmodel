@@ -1,6 +1,6 @@
 
-#ifndef EVENT_ACTIONS_H
-#define EVENT_ACTIONS_H
+#ifndef EVENT_TTT_ACTIONS_H
+#define EVENT_TTT_ACTIONS_H
 
 #include "Subjects.h"
 #include <string>
@@ -39,4 +39,4 @@ namespace Events
   };
 
 }
-#endif // EVENT_ACTIONS_H
+#endif // EVENT_TTT_ACTIONS_H

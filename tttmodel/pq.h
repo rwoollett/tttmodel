@@ -1,25 +1,21 @@
 #pragma once
 
-#include "ClientCS.h"
+#include "TicTacToe.h"
 
 #ifdef LIBPQ_FOUND
 #include <libpq-fe.h>
 namespace Model::PG
 {
-  namespace ClientCS
+  namespace Game
   {
-    Model::ClientCS fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
+    Model::Game fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
   }
 
-  namespace ClientConnectCS
+  namespace PlayerMove
   {
-    Model::ClientConnectCS fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
+    Model::PlayerMove fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
   }
 
-  namespace ClientDisconnectCS
-  {
-    Model::ClientDisconnectCS fromPGRes(PGresult * res, int nCols, int rowIndex = 0);
-  }
 
 } // namespace Model
 #endif //LIBPQ_FOUND
