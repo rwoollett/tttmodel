@@ -8,46 +8,34 @@
 
 namespace Events
 {
-  // Define a struct to encapsulate Connect/Disconnect ClientCS
-  struct ClientConnectEvent
+  struct GameUpdateByIdEvent
   {
-    Subject subject{Subject::ClientCSConnected};
-    std::string sourceIp;
-    std::string processId;
-    std::string connectedAt;
-    std::chrono::system_clock::time_point tpConnectedAt{};
-    ClientConnectEvent() = default;
+    Subject subject{Subject::GameUpdateById};
+    std::string gameId;
+    std::string board;
+    std::string result;
+    GameUpdateByIdEvent() = default;
   };
 
-  struct ClientDisconnectEvent
+  struct GameCreateEvent
   {
-    Subject subject{Subject::ClientCSDisconnected};
-    std::string sourceIp;
-    std::string disconnectedAt;
-    std::chrono::system_clock::time_point tpDisconnectedAt{};
-    ClientDisconnectEvent() = default;
+    Subject subject{Subject::GameCreate};
+    std::string gameId;
+    std::string board;
+    std::string createdAt;
+    std::chrono::system_clock::time_point tpCreatedAt{};
+    GameCreateEvent() = default;
   };
 
-  struct CSTokenRequestEvent
+  struct PlayerMoveEvent
   {
-    Subject subject{Subject::CSTokenRequest};
-    std::string sourceIp;
-    std::string originalIp;
-    std::string parentIp;
-    std::string requestedAt;
-    bool relayed;
-    std::chrono::system_clock::time_point tpRequestedAt{};
-    CSTokenRequestEvent() = default;
-  };
-
-  struct CSTokenAcquireEvent
-  {
-    Subject subject{Subject::CSTokenAcquire};
-    std::string ip;
-    std::string sourceIp;
-    std::string acquiredAt;
-    std::chrono::system_clock::time_point tpAcquiredAt{};
-    CSTokenAcquireEvent() = default;
+    Subject subject{Subject::PlayerMove};
+    std::string id;
+    std::string gameId;
+    int player;
+    int moveCell;
+    bool isOpponentStart;
+    PlayerMoveEvent() = default;
   };
 
 }

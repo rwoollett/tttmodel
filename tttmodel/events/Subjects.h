@@ -4,6 +4,7 @@
 
 #include <string>
 #include <map>
+#include <string_view>
 
 namespace Events
 {
@@ -11,23 +12,20 @@ namespace Events
   enum class Subject
   {
     Invalid = -1,
-    ClientCSConnected,
-    ClientCSDisconnected,
-    CSTokenRequest,
-    CSTokenAcquire
+    GameUpdateById,
+    GameCreate,
+    PlayerMove
   };
 
   static const std::map<Subject, std::string_view> SubjectNames = {
-      {Subject::ClientCSConnected, "clientCS_Connected"},
-      {Subject::ClientCSDisconnected, "clientCS_Disconnected"},
-      {Subject::CSTokenRequest, "csToken_request"},
-      {Subject::CSTokenAcquire, "csToken_acquire"}};
+      {Subject::GameUpdateById, "game_Update"},
+      {Subject::GameCreate, "game_Create"},
+      {Subject::PlayerMove, "player_Move"}};
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
-      {"clientCS_Connected", Subject::ClientCSConnected},
-      {"clientCS_Disconnected", Subject::ClientCSDisconnected},
-      {"csToken_request", Subject::CSTokenRequest},
-      {"csToken_acquire", Subject::CSTokenAcquire}};
+      {"game_Update", Subject::GameUpdateById},
+      {"game_Create", Subject::GameCreate},
+      {"player_Move", Subject::PlayerMove}};
 
 }
 #endif // EVENT_SUBJECTS_H

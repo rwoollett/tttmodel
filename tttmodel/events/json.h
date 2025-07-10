@@ -11,118 +11,85 @@ using Model::parseDate;
 namespace Events
 {
 
-  inline void to_json(json &jsonOut, ClientConnectEvent const &value)
+  inline void to_json(json &jsonOut, GameUpdateByIdEvent const &value)
   {
     json obj;
-    obj["sourceIp"] = value.sourceIp;
-    obj["processId"] = value.processId;
-    obj["connectedAt"] = formatDate(value.tpConnectedAt);
+    obj["gameId"] = value.gameId;
+    obj["board"] = value.board;
+    obj["result"] = value.result
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::ClientCSConnected)
+    if (value.subject != Subject::GameUpdateById)
     {
-      throw std::string("ClientConnectEvent::to_json - Subject should be ClientCSConnected");
+      throw std::string("GameUpdateByIdEvent::to_json - Subject should be GameUpdateById");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
 
-  inline void from_json(json const &jsonIn, ClientConnectEvent &value)
+  inline void from_json(json const &jsonIn, GameUpdateByIdEvent &value)
   {
     json obj = jsonIn.at("payload");
     std::string subject;
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
-    obj.at("sourceIp").get_to(value.sourceIp);
-    obj.at("processId").get_to(value.processId);
-    obj.at("connectedAt").get_to(value.connectedAt);
-    auto tpOptCA = parseDate(value.connectedAt);
+    obj.at("gameId").get_to(value.gameId);
+    obj.at("board").get_to(value.board);
+    obj.at("result").get_to(value.result);
+  };
+
+  inline void to_json(json &jsonOut, GameCreateEvent const &value)
+  {
+    json obj;
+    obj["gameId"] = value.gameId;
+    obj["board"] = value.board;
+    obj["createdAt"] = formatDate(value.tpCreatedAt);
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::GameCreate)
+    {
+      throw std::string("GameCreateEvent::to_jsonn - Subject should be GameCreate");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, GameCreateEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+    obj.at("gameId").get_to(value.gameId);
+    obj.at("board").get_to(value.board);
+    auto tpOptCA = parseDate(value.createdAt);
     if (tpOptCA)
-      value.tpConnectedAt = *tpOptCA;
+      value.tpCreatedAt = *tpOptCA;
   };
 
-  inline void to_json(json &jsonOut, ClientDisconnectEvent const &value)
+  inline void to_json(json &jsonOut, PlayerMoveEvent const &value)
   {
     json obj;
-    obj["sourceIp"] = value.sourceIp;
-    obj["disconnectedAt"] = formatDate(value.tpDisconnectedAt);
+    obj["gameId"] = value.gameId;
+    obj["id"] = value.id;
+    obj["player"] = value.player;
+    obj["moveCell"] = value.moveCell;
+    obj["isOpponentStart"] = value.isOpponentStart;
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::ClientCSDisconnected)
+    if (value.subject != Subject::PlayerMove)
     {
-      throw std::string("ClientDisconnectEvent::to_jsonn - Subject should be ClientCSDisconnected");
+      throw std::string("PlayerMoveEvent::to_json - Subject should be PlayerMove");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
 
-  inline void from_json(json const &jsonIn, ClientDisconnectEvent &value)
+  inline void from_json(json const &jsonIn, PlayerMoveEvent &value)
   {
     json obj = jsonIn.at("payload");
     std::string subject;
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
-    obj.at("sourceIp").get_to(value.sourceIp);
-    obj.at("disconnectedAt").get_to(value.disconnectedAt);
-    auto tpOptCA = parseDate(value.disconnectedAt);
-    if (tpOptCA)
-      value.tpDisconnectedAt = *tpOptCA;
-  };
-
-  inline void to_json(json &jsonOut, CSTokenRequestEvent const &value)
-  {
-    json obj;
-    obj["sourceIp"] = value.sourceIp;
-    obj["originalIp"] = value.originalIp;
-    obj["parentIp"] = value.parentIp;
-    obj["relayed"] = value.relayed;
-    obj["requestedAt"] = formatDate(value.tpRequestedAt);
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::CSTokenRequest)
-    {
-      throw std::string("CSTokenRequestEvent::to_json - Subject should be CSTokenRequest");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, CSTokenRequestEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-    obj.at("sourceIp").get_to(value.sourceIp);
-    obj.at("originalIp").get_to(value.originalIp);
-    obj.at("parentIp").get_to(value.parentIp);
-    obj.at("relayed").get_to(value.relayed);
-    obj.at("requestedAt").get_to(value.requestedAt);
-    auto tpOpt = parseDate(value.requestedAt);
-    if (tpOpt)
-      value.tpRequestedAt = *tpOpt;
-  };
-
-  inline void to_json(json &jsonOut, CSTokenAcquireEvent const &value)
-  {
-    json obj;
-    obj["sourceIp"] = value.sourceIp;
-    obj["ip"] = value.ip;
-    obj["acquiredAt"] = formatDate(value.tpAcquiredAt);
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::CSTokenAcquire)
-    {
-      throw std::string("CSTokenAcquireEvent::to_json - Subject should be CSTokenAcquire");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, CSTokenAcquireEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-    obj.at("sourceIp").get_to(value.sourceIp);
-    obj.at("ip").get_to(value.ip);
-    obj.at("acquiredAt").get_to(value.acquiredAt);
-    auto tpOpt = parseDate(value.acquiredAt);
-    if (tpOpt)
-      value.tpAcquiredAt = *tpOpt;
+    obj.at("gameId").get_to(value.gameId);
+    obj.at("id").get_to(value.id);
+    obj.at("player").get_to(value.player);
+    obj.at("moveCell").get_to(value.moveCell);
+    obj.at("isOpponentStart").get_to(value.isOpponentStart);
   };
 
 } // namespace Events
