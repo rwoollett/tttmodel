@@ -16,7 +16,7 @@ namespace Events
     json obj;
     obj["gameId"] = value.gameId;
     obj["board"] = value.board;
-    obj["result"] = value.result
+    obj["result"] = value.result;
     jsonOut["payload"] = obj;
     if (value.subject != Subject::GameUpdateById)
     {
