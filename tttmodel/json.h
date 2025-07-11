@@ -19,9 +19,15 @@ namespace Model
 
   inline void from_json(json const &jsonIn, Game &value)
   {
-    jsonIn.at("id").get_to(value.id);
     jsonIn.at("userId").get_to(value.userId);
-    jsonIn.at("board").get_to(value.board);
+    if (jsonIn.contains("id"))
+    {
+      jsonIn.at("id").get_to(value.id);
+    }
+    if (jsonIn.contains("board"))
+    {
+      jsonIn.at("board").get_to(value.board);
+    }
     if (jsonIn.contains("createdAt"))
     {
       jsonIn.at("createdAt").get_to(value.createdAt);
