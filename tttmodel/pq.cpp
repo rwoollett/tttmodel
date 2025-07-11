@@ -46,7 +46,7 @@ namespace Model::PG
       };
 
       // D(std::cerr << "connected bool from pq: " << getString("connected") << std::endl;)
-      game.userId = getString("userId");
+      game.id = getString("id");
       game.board = getString("board");
       game.userId = getString("userId");
       game.createdAt = getString("createdAt");
