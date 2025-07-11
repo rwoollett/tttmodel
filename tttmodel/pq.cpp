@@ -23,10 +23,10 @@ namespace Model::PG
   };
 
   auto const getStringFromResRowByKey = [](
-                             PGresult *res,
-                             int rowIndex,
-                             const std::unordered_map<std::string, int> &fieldColumns,
-                             const std::string &key) -> std::string
+                                            PGresult *res,
+                                            int rowIndex,
+                                            const std::unordered_map<std::string, int> &fieldColumns,
+                                            const std::string &key) -> std::string
   {
     auto it = fieldColumns.find(key);
     if (it == fieldColumns.end())
@@ -37,14 +37,14 @@ namespace Model::PG
   Model::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
     Model::Game game{};
-    auto fieldColumns = mapFieldCols(res, nCols);
-    auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
-    {
-      return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
-    };
-
     try
     {
+      auto fieldColumns = mapFieldCols(res, nCols);
+      auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
+      {
+        return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
+      };
+
       // D(std::cerr << "connected bool from pq: " << getString("connected") << std::endl;)
       game.userId = getString("userId");
       game.board = getString("board");
@@ -53,7 +53,6 @@ namespace Model::PG
       auto tpOptCA = parseDate(getString("createdAt"));
       if (tpOptCA)
         game.tpCreatedAt = *tpOptCA;
-
     }
     catch (const std::string &e)
     {
@@ -79,13 +78,12 @@ namespace Model::PG
 
     try
     {
-      //playerMove.id = getString("id");
+      // playerMove.id = getString("id");
       playerMove.gameId = getString("gameId");
       playerMove.isOpponentStart = (getString("isOpponentStart") == "t");
       playerMove.allocated = (getString("allocated") == "t");
       playerMove.player = std::atoi(getString("player").c_str());
       playerMove.moveCell = std::atoi(getString("moveCell").c_str());
-
     }
     catch (const std::string &e)
     {
