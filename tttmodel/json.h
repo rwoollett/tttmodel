@@ -37,6 +37,16 @@ namespace Model
     }
   };
 
+  inline void to_json(json &jsonOut, GameStart const &value)
+  {
+    jsonOut["gameId"] = value.gameId;
+  }
+
+  inline void from_json(json const &jsonIn, GameStart &value)
+  {
+    jsonIn.at("gameId").get_to(value.gameId);
+  };
+
   inline void to_json(json &jsonOut, PlayerMove const &value)
   {
     jsonOut["id"] = value.id;

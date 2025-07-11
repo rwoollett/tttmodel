@@ -8,6 +8,11 @@ namespace Model
     return !(o.userId.empty());
   }
 
+  bool Validate::GameStart(const Model::GameStart &o)
+  {
+    return !(o.gameId.empty());
+  }
+
   bool Validate::PlayerMove(const Model::PlayerMove &o)
   {
     return ((o.player == 1 || o.player == 2) &&

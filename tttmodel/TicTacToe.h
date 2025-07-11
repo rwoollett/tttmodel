@@ -24,7 +24,14 @@ namespace Model
     Game() = default;
   };
 
-    // Define a struct to encapsulate PlayerMove table insert, update and query
+  struct GameStart
+  {
+    std::string gameId;
+    GameStart() = default;
+  };
+
+
+  // Define a struct to encapsulate PlayerMove table insert, update and query
   struct PlayerMove
   {
     std::string id;
@@ -40,6 +47,7 @@ namespace Model
   namespace Validate
   {
     bool Game(const Model::Game &o);
+    bool GameStart(const Model::GameStart &o);
     bool PlayerMove(const Model::PlayerMove &o);
   }
   
