@@ -27,7 +27,7 @@ namespace Model
       jsonIn.at("createdAt").get_to(value.createdAt);
       auto tpOptCA = parseDate(value.createdAt);
       if (tpOptCA)
-        value.tpConnectedAt = *tpOptCA;
+        value.tpCreatedAt = *tpOptCA;
     }
   };
 
