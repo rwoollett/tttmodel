@@ -49,28 +49,28 @@ namespace Model
 
   inline void to_json(json &jsonOut, PlayerMove const &value)
   {
-    if (jsonIn.contains("id"))
-    {
-      jsonIn.at("id").get_to(value.id);
-    }
+    jsonOut["id"] = value.id;
     jsonOut["gameId"] = value.gameId;
     jsonOut["player"] = value.player;
     jsonOut["moveCell"] = value.moveCell;
     jsonOut["isOpponentStart"] = value.isOpponentStart;
-    if (jsonIn.contains("allocated"))
-    {
-      jsonIn.at("allocated").get_to(value.allocated);
-    }
+    jsonOut["allocated"] = value.allocated;
   }
 
   inline void from_json(json const &jsonIn, PlayerMove &value)
   {
-    jsonIn.at("id").get_to(value.id);
+    if (jsonIn.contains("id"))
+    {
+      jsonIn.at("id").get_to(value.id);
+    }
     jsonIn.at("gameId").get_to(value.gameId);
     jsonIn.at("player").get_to(value.player);
     jsonIn.at("moveCell").get_to(value.moveCell);
     jsonIn.at("isOpponenentStart").get_to(value.isOpponentStart);
-    jsonIn.at("allocated").get_to(value.allocated);
+    if (jsonIn.contains("allocated"))
+    {
+      jsonIn.at("allocated").get_to(value.allocated);
+    }
   }
 
 } // namespace Model
