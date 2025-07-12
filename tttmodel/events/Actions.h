@@ -32,6 +32,7 @@ namespace Events
     Subject subject{Subject::PlayerMove};
     std::string id;
     std::string gameId;
+    std::string board;
     int player;
     int moveCell;
     bool isOpponentStart;

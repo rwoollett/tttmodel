@@ -67,6 +67,7 @@ namespace Events
   {
     json obj;
     obj["gameId"] = value.gameId;
+    obj["board"] = value.board;
     obj["id"] = value.id;
     obj["player"] = value.player;
     obj["moveCell"] = value.moveCell;
@@ -90,6 +91,10 @@ namespace Events
     obj.at("player").get_to(value.player);
     obj.at("moveCell").get_to(value.moveCell);
     obj.at("isOpponentStart").get_to(value.isOpponentStart);
+    if (obj.contains("board"))
+    {
+      obj.at("board").get_to(value.board);
+    }
   };
 
 } // namespace Events
