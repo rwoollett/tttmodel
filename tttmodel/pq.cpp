@@ -80,6 +80,7 @@ namespace Model::PG
     {
       playerMove.id = getString("id");
       playerMove.gameId = getString("gameId");
+      playerMove.board = getString("board");
       playerMove.isOpponentStart = (getString("isOpponentStart") == "t");
       playerMove.allocated = (getString("allocated") == "t");
       playerMove.player = std::atoi(getString("player").c_str());

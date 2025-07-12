@@ -55,6 +55,7 @@ namespace Model
     jsonOut["moveCell"] = value.moveCell;
     jsonOut["isOpponentStart"] = value.isOpponentStart;
     jsonOut["allocated"] = value.allocated;
+    jsonOut["board"] = value.board;
   }
 
   inline void from_json(json const &jsonIn, PlayerMove &value)
@@ -70,6 +71,10 @@ namespace Model
     if (jsonIn.contains("allocated"))
     {
       jsonIn.at("allocated").get_to(value.allocated);
+    }
+    if (jsonIn.contains("board"))
+    {
+      jsonIn.at("board").get_to(value.board);
     }
   }
 

@@ -40,6 +40,7 @@ namespace Model
     int moveCell;
     bool isOpponentStart;
     bool allocated;
+    std::string board;
 
     PlayerMove() = default;
   };
