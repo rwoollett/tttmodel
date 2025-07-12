@@ -66,7 +66,7 @@ namespace Model
     jsonIn.at("gameId").get_to(value.gameId);
     jsonIn.at("player").get_to(value.player);
     jsonIn.at("moveCell").get_to(value.moveCell);
-    jsonIn.at("isOpponenentStart").get_to(value.isOpponentStart);
+    jsonIn.at("isOpponentStart").get_to(value.isOpponentStart);
     if (jsonIn.contains("allocated"))
     {
       jsonIn.at("allocated").get_to(value.allocated);
