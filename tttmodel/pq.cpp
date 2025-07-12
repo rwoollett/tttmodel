@@ -78,7 +78,7 @@ namespace Model::PG
 
     try
     {
-      // playerMove.id = getString("id");
+      playerMove.id = getString("id");
       playerMove.gameId = getString("gameId");
       playerMove.isOpponentStart = (getString("isOpponentStart") == "t");
       playerMove.allocated = (getString("allocated") == "t");
