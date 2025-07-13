@@ -30,6 +30,13 @@ namespace Model
     GameStart() = default;
   };
 
+  struct GameUpdate
+  {
+    std::string gameId;
+    std::string board;
+    std::string result;
+    GameUpdate() = default;
+  };
 
   // Define a struct to encapsulate PlayerMove table insert, update and query
   struct PlayerMove
@@ -49,6 +56,7 @@ namespace Model
   {
     bool Game(const Model::Game &o);
     bool GameStart(const Model::GameStart &o);
+    bool GameUpdate(const Model::GameUpdate &o);
     bool PlayerMove(const Model::PlayerMove &o);
   }
   

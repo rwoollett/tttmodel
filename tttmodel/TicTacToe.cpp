@@ -13,6 +13,13 @@ namespace Model
     return !(o.gameId.empty());
   }
 
+  bool Validate::GameUpdate(const Model::GameUpdate &o)
+  {
+    return !(o.board.empty() ||
+             o.result.empty() ||
+             o.gameId.empty());
+  }
+
   bool Validate::PlayerMove(const Model::PlayerMove &o)
   {
     return ((o.player == 1 || o.player == 2) &&
