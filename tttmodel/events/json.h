@@ -56,7 +56,7 @@ namespace TTTEvents
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
     obj.at("board").get_to(value.board);
-    auto tpOptCA = parseDate(value.createdAt);
+    auto tpOptCA = TTTModel::parseDate(value.createdAt);
     if (tpOptCA)
       value.tpCreatedAt = *tpOptCA;
   };
