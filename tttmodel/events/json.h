@@ -5,8 +5,8 @@
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
-using Model::formatDate;
-using Model::parseDate;
+using TTTModel::formatDate;
+using TTTModel::parseDate;
 
 namespace TTTEvents
 {
