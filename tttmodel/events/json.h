@@ -5,8 +5,6 @@
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
-using TTTModel::formatDate;
-using TTTModel::parseDate;
 
 namespace TTTEvents
 {
@@ -41,7 +39,7 @@ namespace TTTEvents
     json obj;
     obj["gameId"] = value.gameId;
     obj["board"] = value.board;
-    obj["createdAt"] = formatDate(value.tpCreatedAt);
+    obj["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
     jsonOut["payload"] = obj;
     if (value.subject != Subject::GameCreate)
     {

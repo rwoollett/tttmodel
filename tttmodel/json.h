@@ -14,7 +14,7 @@ namespace TTTModel
     jsonOut["id"] = value.id;
     jsonOut["userId"] = value.userId;
     jsonOut["board"] = value.board;
-    jsonOut["createdAt"] = formatDate(value.tpCreatedAt);
+    jsonOut["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
   }
 
   inline void from_json(json const &jsonIn, Game &value)
@@ -31,7 +31,7 @@ namespace TTTModel
     if (jsonIn.contains("createdAt"))
     {
       jsonIn.at("createdAt").get_to(value.createdAt);
-      auto tpOptCA = parseDate(value.createdAt);
+      auto tpOptCA = TTTModel::parseDate(value.createdAt);
       if (tpOptCA)
         value.tpCreatedAt = *tpOptCA;
     }

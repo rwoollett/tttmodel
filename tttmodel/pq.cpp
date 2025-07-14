@@ -50,7 +50,7 @@ namespace TTTModel::PG
       game.board = getString("board");
       game.userId = getString("userId");
       game.createdAt = getString("createdAt");
-      auto tpOptCA = parseDate(getString("createdAt"));
+      auto tpOptCA = TTTModel::parseDate(getString("createdAt"));
       if (tpOptCA)
         game.tpCreatedAt = *tpOptCA;
     }
