@@ -6,7 +6,7 @@
 #include <string>
 #include <chrono>
 
-namespace Events
+namespace TTTEvents
 {
   struct GameUpdateByIdEvent
   {

@@ -8,7 +8,7 @@ using json = nlohmann::json;
 using Model::formatDate;
 using Model::parseDate;
 
-namespace Events
+namespace TTTEvents
 {
 
   inline void to_json(json &jsonOut, GameUpdateByIdEvent const &value)

@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-namespace Model
+namespace TTTModel
 {
 
   inline void to_json(json &jsonOut, Game const &value)
@@ -92,4 +92,4 @@ namespace Model
     }
   }
 
-} // namespace Model
+} // namespace TTTModel

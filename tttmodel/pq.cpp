@@ -9,7 +9,7 @@
 #endif
 
 #ifdef LIBPQ_FOUND
-namespace Model::PG
+namespace TTTModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
   {
@@ -34,9 +34,9 @@ namespace Model::PG
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
   };
 
-  Model::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  TTTModel::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
-    Model::Game game{};
+    TTTModel::Game game{};
     try
     {
       auto fieldColumns = mapFieldCols(res, nCols);
@@ -66,10 +66,10 @@ namespace Model::PG
     return game;
   }
 
-  Model::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  TTTModel::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
 
-    Model::PlayerMove playerMove{};
+    TTTModel::PlayerMove playerMove{};
     auto fieldColumns = mapFieldCols(res, nCols);
     auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
     {

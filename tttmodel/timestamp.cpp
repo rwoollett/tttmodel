@@ -12,7 +12,7 @@
 #define D(x) x
 #endif
 
-namespace Model
+namespace TTTModel
 {
 
   constexpr auto FORMAT_DATE = "%Y-%m-%d %H:%M:%S";

@@ -6,7 +6,7 @@
 #include <map>
 #include <string_view>
 
-namespace Events
+namespace TTTEvents
 {
   
   enum class Subject
