@@ -24,7 +24,8 @@ namespace TTTModel
   {
     return ((o.player == 1 || o.player == 2) &&
             (o.moveCell > 0 && o.moveCell < 10) &&
-            !(o.gameId.empty()));
+            !(o.gameId.empty())) ||
+            (o.isOpponentStart == true && o.moveCell == -1);
   }
 
 }
