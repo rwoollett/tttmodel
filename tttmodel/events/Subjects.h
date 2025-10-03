@@ -18,14 +18,14 @@ namespace TTTEvents
   };
 
   static const std::map<Subject, std::string_view> SubjectNames = {
-      {Subject::GameUpdateById, "game_Update"},
-      {Subject::GameCreate, "game_Create"},
-      {Subject::PlayerMove, "player_Move"}};
+      {Subject::GameUpdateById, "ttt_game_Update"},
+      {Subject::GameCreate, "ttt_game_Create"},
+      {Subject::PlayerMove, "ttt_player_Move"}};
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
-      {"game_Update", Subject::GameUpdateById},
-      {"game_Create", Subject::GameCreate},
-      {"player_Move", Subject::PlayerMove}};
+      {"ttt_game_Update", Subject::GameUpdateById},
+      {"ttt_game_Create", Subject::GameCreate},
+      {"ttt_player_Move", Subject::PlayerMove}};
 
 }
 #endif // EVENT_TTT_SUBJECTS_H
