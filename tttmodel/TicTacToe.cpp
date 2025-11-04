@@ -23,7 +23,7 @@ namespace TTTModel
   bool Validate::PlayerMove(const TTTModel::PlayerMove &o)
   {
     return ((o.player == 1 || o.player == 2) &&
-            (o.moveCell > 0 && o.moveCell < 10) &&
+            (o.moveCell >= 0 && o.moveCell < 9) &&
             !(o.gameId.empty())) ||
             (o.isOpponentStart == true && o.moveCell == -1);
   }
