@@ -47,7 +47,6 @@ namespace TTTModel
       return std::nullopt;
     }
 
-    D(std::cerr << "parseDate isodate : " << isoDate << std::endl;)
     std::tm tm = {};
     size_t dot_pos = isoDate.find('.');
     int milliseconds = 0;
