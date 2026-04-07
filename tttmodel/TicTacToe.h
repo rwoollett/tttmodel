@@ -43,10 +43,10 @@ namespace TTTModel
   {
     std::string id;
     std::string gameId;
-    int player;
-    int moveCell;
-    bool isOpponentStart;
-    bool allocated;
+    int player = 0;
+    int moveCell = 0;
+    bool isOpponentStart = true;
+    bool allocated = false;
     std::string board;
 
     PlayerMove() = default;

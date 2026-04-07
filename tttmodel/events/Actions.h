@@ -33,9 +33,9 @@ namespace TTTEvents
     std::string id;
     std::string gameId;
     std::string board;
-    int player;
-    int moveCell;
-    bool isOpponentStart;
+    int player = 0;
+    int moveCell = 0;
+    bool isOpponentStart = true;
     PlayerMoveEvent() = default;
   };
 
