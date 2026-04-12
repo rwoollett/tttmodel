@@ -28,7 +28,6 @@ namespace TTTEvents
       {"ttt_game_Update", Subject::GameUpdateById},
       {"ttt_game_Create", Subject::GameCreate},
       {"ttt_player_Move", Subject::PlayerMove},
-      {"ttt_ws_User", Subject::WSUser}}
-};
+      {"ttt_ws_User", Subject::WSUser}};
 }
 #endif // EVENT_TTT_SUBJECTS_H
