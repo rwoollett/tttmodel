@@ -95,4 +95,25 @@ namespace TTTEvents
     }
   };
 
+  inline void to_json(json &jsonOut, WSUserEvent const &value)
+  {
+    json obj;
+    obj["userId"] = value.userId;
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::WSUser)
+    {
+      throw std::string("WSUserEvent::to_json - Subject should be WSUser");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, WSUserEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+    obj.at("userId").get_to(value.userId);
+  };
+
 } // namespace Events

@@ -39,5 +39,12 @@ namespace TTTEvents
     PlayerMoveEvent() = default;
   };
 
+  struct WSUserEvent
+  {
+    Subject subject{Subject::WSUser};
+    std::string userId;
+    WSUserEvent() = default;
+  };
+
 }
 #endif // EVENT_TTT_ACTIONS_H
