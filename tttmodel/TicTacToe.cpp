@@ -14,9 +14,19 @@ namespace TTTModel
            std::all_of(s.begin(), s.end(), ::isalnum);
   }
 
+  inline bool isAllAlnumUnderscore(const std::string &s)
+  {
+    return !s.empty() &&
+           std::all_of(s.begin(), s.end(),
+                       [](unsigned char c)
+                       {
+                         return std::isalnum(c) || c == '_';
+                       });
+  }
+
   bool Validate::Game(const TTTModel::Game &o)
   {
-    return isAllAlnum(o.userId);
+    return isAllAlnumUnderscore(o.userId);
   }
 
   bool Validate::GameStart(const TTTModel::GameStart &o)
