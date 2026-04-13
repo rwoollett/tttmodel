@@ -48,7 +48,6 @@ namespace TTTModel::PG
       // D(std::cerr << "connected bool from pq: " << getString("connected") << std::endl;)
       game.id = getString("id");
       game.board = getString("board");
-      game.userId = getString("userId");
       game.createdAt = getString("createdAt");
       auto tpOptCA = TTTModel::parseDate(getString("createdAt"));
       if (tpOptCA)

@@ -24,14 +24,14 @@ namespace TTTModel
                        });
   }
 
-  bool Validate::Game(const TTTModel::Game &o)
+  bool Validate::GameCreate(const TTTModel::GameCreate &o)
   {
     return isAllAlnumUnderscore(o.userId);
   }
 
   bool Validate::GameStart(const TTTModel::GameStart &o)
   {
-    return isAllDigits(o.gameId);
+    return isAllDigits(o.gameId) && isAllAlnumUnderscore(o.userId);
   }
 
   bool Validate::GameUpdate(const TTTModel::GameUpdate &o)
@@ -44,7 +44,7 @@ namespace TTTModel
   {
     return ((o.player == 1 || o.player == 2) &&
             (o.moveCell >= 0 && o.moveCell < 9) &&
-            isAllDigits(o.gameId)) ||
+            isAllDigits(o.gameId) && isAllAlnumUnderscore(o.userId)) ||
            (o.isOpponentStart == true && o.moveCell == -1);
   }
 

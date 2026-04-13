@@ -12,14 +12,12 @@ namespace TTTModel
   inline void to_json(json &jsonOut, Game const &value)
   {
     jsonOut["id"] = value.id;
-    jsonOut["userId"] = value.userId;
     jsonOut["board"] = value.board;
     jsonOut["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
   }
 
   inline void from_json(json const &jsonIn, Game &value)
   {
-    jsonIn.at("userId").get_to(value.userId);
     if (jsonIn.contains("id"))
     {
       jsonIn.at("id").get_to(value.id);
@@ -37,14 +35,26 @@ namespace TTTModel
     }
   };
 
+  inline void to_json(json &jsonOut, GameCreate const &value)
+  {
+    jsonOut["userId"] = value.userId;
+  }
+
+  inline void from_json(json const &jsonIn, GameCreate &value)
+  {
+    jsonIn.at("userId").get_to(value.userId);
+  };
+
   inline void to_json(json &jsonOut, GameStart const &value)
   {
     jsonOut["gameId"] = value.gameId;
+    jsonOut["userId"] = value.userId;
   }
 
   inline void from_json(json const &jsonIn, GameStart &value)
   {
     jsonIn.at("gameId").get_to(value.gameId);
+    jsonIn.at("userId").get_to(value.userId);
   };
 
   inline void to_json(json &jsonOut, GameUpdate const &value)
@@ -65,6 +75,7 @@ namespace TTTModel
   {
     jsonOut["id"] = value.id;
     jsonOut["gameId"] = value.gameId;
+    jsonOut["userId"] = value.userId;
     jsonOut["player"] = value.player;
     jsonOut["moveCell"] = value.moveCell;
     jsonOut["isOpponentStart"] = value.isOpponentStart;
@@ -79,6 +90,7 @@ namespace TTTModel
       jsonIn.at("id").get_to(value.id);
     }
     jsonIn.at("gameId").get_to(value.gameId);
+    jsonIn.at("userId").get_to(value.userId);
     jsonIn.at("player").get_to(value.player);
     jsonIn.at("moveCell").get_to(value.moveCell);
     jsonIn.at("isOpponentStart").get_to(value.isOpponentStart);

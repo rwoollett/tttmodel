@@ -16,7 +16,6 @@ namespace TTTModel
   struct Game
   {
     std::string id;
-    std::string userId;
     std::string board;
     std::string createdAt;
     std::chrono::system_clock::time_point tpCreatedAt{};
@@ -24,9 +23,16 @@ namespace TTTModel
     Game() = default;
   };
 
+  struct GameCreate
+  {
+    std::string userId;
+    GameCreate() = default;
+  };
+
   struct GameStart
   {
     std::string gameId;
+    std::string userId;
     GameStart() = default;
   };
 
@@ -43,6 +49,7 @@ namespace TTTModel
   {
     std::string id;
     std::string gameId;
+    std::string userId;
     int player = 0;
     int moveCell = 0;
     bool isOpponentStart = true;
@@ -54,7 +61,7 @@ namespace TTTModel
 
   namespace Validate
   {
-    bool Game(const TTTModel::Game &o);
+    bool GameCreate(const TTTModel::GameCreate &o);
     bool GameStart(const TTTModel::GameStart &o);
     bool GameUpdate(const TTTModel::GameUpdate &o);
     bool PlayerMove(const TTTModel::PlayerMove &o);
