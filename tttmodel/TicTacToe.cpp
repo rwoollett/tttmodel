@@ -8,9 +8,15 @@ namespace TTTModel
            std::all_of(s.begin(), s.end(), ::isdigit);
   }
 
+  inline bool isAllAlnum(const std::string &s)
+  {
+    return !s.empty() &&
+           std::all_of(s.begin(), s.end(), ::isalnum);
+  }
+
   bool Validate::Game(const TTTModel::Game &o)
   {
-    return isAllDigits(o.userId);
+    return isAllAlnum(o.userId);
   }
 
   bool Validate::GameStart(const TTTModel::GameStart &o)
