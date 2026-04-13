@@ -13,6 +13,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
+    obj["userId"] = value.userId;
     obj["board"] = value.board;
     obj["result"] = value.result;
     jsonOut["payload"] = obj;
@@ -30,6 +31,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
+    obj.at("userId").get_to(value.userId);
     obj.at("board").get_to(value.board);
     obj.at("result").get_to(value.result);
   };
@@ -38,6 +40,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
+    obj["userId"] = value.userId;
     obj["board"] = value.board;
     obj["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
     jsonOut["payload"] = obj;
@@ -55,6 +58,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
+    obj.at("userId").get_to(value.userId);
     obj.at("board").get_to(value.board);
     auto tpOptCA = TTTModel::parseDate(value.createdAt);
     if (tpOptCA)
@@ -65,6 +69,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
+    obj["userId"] = value.userId;
     obj["board"] = value.board;
     obj["id"] = value.id;
     obj["player"] = value.player;
@@ -85,6 +90,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
+    obj.at("userId").get_to(value.userId);
     obj.at("id").get_to(value.id);
     obj.at("player").get_to(value.player);
     obj.at("moveCell").get_to(value.moveCell);
@@ -93,27 +99,6 @@ namespace TTTEvents
     {
       obj.at("board").get_to(value.board);
     }
-  };
-
-  inline void to_json(json &jsonOut, WSUserEvent const &value)
-  {
-    json obj;
-    obj["userId"] = value.userId;
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::WSUser)
-    {
-      throw std::string("WSUserEvent::to_json - Subject should be WSUser");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, WSUserEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-    obj.at("userId").get_to(value.userId);
   };
 
 } // namespace Events
