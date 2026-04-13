@@ -36,7 +36,7 @@ namespace TTTModel
 
   bool Validate::GameUpdate(const TTTModel::GameUpdate &o)
   {
-    return isAllDigits(o.gameId) &&
+    return isAllDigits(o.gameId) && isAllAlnumUnderscore(o.userId) &&
            !(o.board.empty() || o.result.empty());
   }
 

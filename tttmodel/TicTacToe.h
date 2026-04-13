@@ -39,6 +39,7 @@ namespace TTTModel
   struct GameUpdate
   {
     std::string gameId;
+    std::string userId;
     std::string board;
     std::string result;
     GameUpdate() = default;

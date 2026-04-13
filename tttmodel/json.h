@@ -60,6 +60,7 @@ namespace TTTModel
   inline void to_json(json &jsonOut, GameUpdate const &value)
   {
     jsonOut["gameId"] = value.gameId;
+    jsonOut["userId"] = value.userId;
     jsonOut["board"] = value.board;
     jsonOut["result"] = value.result;
   }
@@ -67,6 +68,7 @@ namespace TTTModel
   inline void from_json(json const &jsonIn, GameUpdate &value)
   {
     jsonIn.at("gameId").get_to(value.gameId);
+    jsonIn.at("userId").get_to(value.userId);
     jsonIn.at("board").get_to(value.board);
     jsonIn.at("result").get_to(value.result);
   };
