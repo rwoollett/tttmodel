@@ -8,6 +8,7 @@
 #define D(x) x
 #endif
 
+#ifdef LIBPQ_FOUND
 namespace TTTModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
@@ -97,3 +98,4 @@ namespace TTTModel::PG
   }
 
 } // namespace Model::PG
+#endif //LIBPQ_FOUND
