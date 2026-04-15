@@ -2,7 +2,6 @@
 
 #include "TicTacToe.h"
 
-#ifdef LIBPQ_FOUND
 #include <libpq-fe.h>
 namespace TTTModel::PG
 {
@@ -18,4 +17,3 @@ namespace TTTModel::PG
 
 
 } // namespace Model
-#endif //LIBPQ_FOUND

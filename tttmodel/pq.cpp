@@ -8,7 +8,6 @@
 #define D(x) x
 #endif
 
-#ifdef LIBPQ_FOUND
 namespace TTTModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
@@ -49,7 +48,7 @@ namespace TTTModel::PG
       game.id = getString("id");
       game.board = getString("board");
       game.createdAt = getString("createdAt");
-      auto tpOptCA = TTTModel::parseDate(getString("createdAt"));
+      auto tpOptCA = Timestamp::parseDate(getString("createdAt"));
       if (tpOptCA)
         game.tpCreatedAt = *tpOptCA;
     }
@@ -98,4 +97,3 @@ namespace TTTModel::PG
   }
 
 } // namespace Model::PG
-#endif // LIBPQ_FOUND
