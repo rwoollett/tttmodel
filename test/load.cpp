@@ -9,6 +9,7 @@
 
 using json = nlohmann::json;
 using namespace TTTModel;
+using namespace Timestamp;
 
 void worker(int id, int iterations)
 {

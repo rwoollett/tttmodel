@@ -42,7 +42,7 @@ namespace TTTEvents
     obj["gameId"] = value.gameId;
     obj["userId"] = value.userId;
     obj["board"] = value.board;
-    obj["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
+    obj["createdAt"] = Timestamp::formatDate(value.tpCreatedAt);
     jsonOut["payload"] = obj;
     if (value.subject != Subject::GameCreate)
     {
@@ -60,7 +60,7 @@ namespace TTTEvents
     obj.at("gameId").get_to(value.gameId);
     obj.at("userId").get_to(value.userId);
     obj.at("board").get_to(value.board);
-    auto tpOptCA = TTTModel::parseDate(value.createdAt);
+    auto tpOptCA = Timestamp::parseDate(value.createdAt);
     if (tpOptCA)
       value.tpCreatedAt = *tpOptCA;
   };

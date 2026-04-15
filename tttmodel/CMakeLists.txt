@@ -11,7 +11,6 @@ add_library(TTTModel
   json.h
   pq.cpp
   pq.h
-  timestamp.cpp
   timestamp.h
 )
 
