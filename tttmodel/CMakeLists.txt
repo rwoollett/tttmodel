@@ -11,9 +11,7 @@ add_library(TTTModel
   json.h
   pq.cpp
   pq.h
-  timestamp.h
 )
-
 
 target_include_directories(
   TTTModel PUBLIC 

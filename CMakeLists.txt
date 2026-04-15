@@ -41,7 +41,15 @@ if(BUILD_TTTMODEL_TESTS)
     GIT_TAG v3.11.3
   )
   FetchContent_MakeAvailable(nlohmann_json)
-  target_link_libraries(TTTModel PUBLIC nlohmann_json::nlohmann_json ${LIBPQ_LIBRARIES})
+
+  FetchContent_Declare(
+    Timestamp
+    GIT_REPOSITORY https://github.com/rwoollett/timestamp.git
+    GIT_TAG master
+  )
+  FetchContent_MakeAvailable(Timestamp)
+
+  target_link_libraries(TTTModel PUBLIC nlohmann_json::nlohmann_json Timestamp ${LIBPQ_LIBRARIES})
   target_include_directories(TTTModel PUBLIC $<BUILD_INTERFACE:${LIBPQ_INCLUDE_DIRS}>)
 
   add_subdirectory(test)
