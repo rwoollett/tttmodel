@@ -37,30 +37,30 @@ namespace TTTModel
 
   inline void to_json(json &jsonOut, GameCreate const &value)
   {
-    jsonOut["userId"] = value.userId;
+    jsonOut["wsId"] = value.wsId;
   }
 
   inline void from_json(json const &jsonIn, GameCreate &value)
   {
-    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("wsId").get_to(value.wsId);
   };
 
   inline void to_json(json &jsonOut, GameStart const &value)
   {
     jsonOut["gameId"] = value.gameId;
-    jsonOut["userId"] = value.userId;
+    jsonOut["wsId"] = value.wsId;
   }
 
   inline void from_json(json const &jsonIn, GameStart &value)
   {
     jsonIn.at("gameId").get_to(value.gameId);
-    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("wsId").get_to(value.wsId);
   };
 
   inline void to_json(json &jsonOut, GameUpdate const &value)
   {
     jsonOut["gameId"] = value.gameId;
-    jsonOut["userId"] = value.userId;
+    jsonOut["wsId"] = value.wsId;
     jsonOut["board"] = value.board;
     jsonOut["result"] = value.result;
   }
@@ -68,7 +68,7 @@ namespace TTTModel
   inline void from_json(json const &jsonIn, GameUpdate &value)
   {
     jsonIn.at("gameId").get_to(value.gameId);
-    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("wsId").get_to(value.wsId);
     jsonIn.at("board").get_to(value.board);
     jsonIn.at("result").get_to(value.result);
   };
@@ -77,7 +77,7 @@ namespace TTTModel
   {
     jsonOut["id"] = value.id;
     jsonOut["gameId"] = value.gameId;
-    jsonOut["userId"] = value.userId;
+    jsonOut["wsId"] = value.wsId;
     jsonOut["player"] = value.player;
     jsonOut["moveCell"] = value.moveCell;
     jsonOut["isOpponentStart"] = value.isOpponentStart;
@@ -92,7 +92,7 @@ namespace TTTModel
       jsonIn.at("id").get_to(value.id);
     }
     jsonIn.at("gameId").get_to(value.gameId);
-    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("wsId").get_to(value.wsId);
     jsonIn.at("player").get_to(value.player);
     jsonIn.at("moveCell").get_to(value.moveCell);
     jsonIn.at("isOpponentStart").get_to(value.isOpponentStart);

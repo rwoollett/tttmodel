@@ -13,7 +13,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
-    obj["userId"] = value.userId;
+    obj["wsId"] = value.wsId;
     obj["board"] = value.board;
     obj["result"] = value.result;
     jsonOut["payload"] = obj;
@@ -31,7 +31,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
-    obj.at("userId").get_to(value.userId);
+    obj.at("wsId").get_to(value.wsId);
     obj.at("board").get_to(value.board);
     obj.at("result").get_to(value.result);
   };
@@ -40,7 +40,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
-    obj["userId"] = value.userId;
+    obj["wsId"] = value.wsId;
     obj["board"] = value.board;
     obj["createdAt"] = Timestamp::formatDate(value.tpCreatedAt);
     jsonOut["payload"] = obj;
@@ -58,7 +58,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
-    obj.at("userId").get_to(value.userId);
+    obj.at("wsId").get_to(value.wsId);
     obj.at("board").get_to(value.board);
     auto tpOptCA = Timestamp::parseDate(value.createdAt);
     if (tpOptCA)
@@ -69,7 +69,7 @@ namespace TTTEvents
   {
     json obj;
     obj["gameId"] = value.gameId;
-    obj["userId"] = value.userId;
+    obj["wsId"] = value.wsId;
     obj["board"] = value.board;
     obj["id"] = value.id;
     obj["player"] = value.player;
@@ -90,7 +90,7 @@ namespace TTTEvents
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
-    obj.at("userId").get_to(value.userId);
+    obj.at("wsId").get_to(value.wsId);
     obj.at("id").get_to(value.id);
     obj.at("player").get_to(value.player);
     obj.at("moveCell").get_to(value.moveCell);

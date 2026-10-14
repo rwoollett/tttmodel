@@ -25,21 +25,21 @@ namespace TTTModel
 
   struct GameCreate
   {
-    std::string userId;
+    std::string wsId;
     GameCreate() = default;
   };
 
   struct GameStart
   {
     std::string gameId;
-    std::string userId;
+    std::string wsId;
     GameStart() = default;
   };
 
   struct GameUpdate
   {
     std::string gameId;
-    std::string userId;
+    std::string wsId;
     std::string board;
     std::string result;
     GameUpdate() = default;
@@ -50,7 +50,7 @@ namespace TTTModel
   {
     std::string id;
     std::string gameId;
-    std::string userId;
+    std::string wsId;
     int player = 0;
     int moveCell = 0;
     bool isOpponentStart = true;

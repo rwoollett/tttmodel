@@ -11,7 +11,7 @@ namespace TTTEvents
   struct GameUpdateByIdEvent
   {
     Subject subject{Subject::GameUpdateById};
-    std::string userId;
+    std::string wsId;
     std::string gameId;
     std::string board;
     std::string result;
@@ -21,7 +21,7 @@ namespace TTTEvents
   struct GameCreateEvent
   {
     Subject subject{Subject::GameCreate};
-    std::string userId;
+    std::string wsId;
     std::string gameId;
     std::string board;
     std::string createdAt;
@@ -32,7 +32,7 @@ namespace TTTEvents
   struct PlayerMoveEvent
   {
     Subject subject{Subject::PlayerMove};
-    std::string userId;
+    std::string wsId;
     std::string id;
     std::string gameId;
     std::string board;
